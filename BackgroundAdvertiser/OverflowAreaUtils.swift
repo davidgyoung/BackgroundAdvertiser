@@ -189,6 +189,15 @@ public class OverflowAreaUtils {
         }
         return binaryString
     }
+    
+    // Returns nil if the advertisement is not an overflow area dvertisement.  Otherwise, returns a
+    // byte arrray indicating which bits are set
+    public static func extractOverflowAreaBytes(advertisementData: [String : Any]) -> [UInt8]? {
+        if let overflowUuids = advertisementData[CBAdvertisementDataOverflowServiceUUIDsKey] as? [CBUUID] {
+            return overflowServiceUuidsToBytes(overflowUuids: overflowUuids)
+        }
+        return nil
+    }
 
     public static func overflowServiceUuidsToBytes(overflowUuids: [CBUUID]) -> [UInt8] {
         var bytes: [UInt8] = []
