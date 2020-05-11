@@ -1,9 +1,9 @@
 //
 //  OverflowAreaUtils.swift
-//  Advertiser
 //
 //  Created by David G. Young on 5/7/20.
-//  Copyright © 2020 davidgyoung. All rights reserved.
+//  Copyright © 2020 David G. Young, all rights reserved.
+//  Licensed under Apache 2
 //
 
 import Foundation

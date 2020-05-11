@@ -1,8 +1,9 @@
 //
 //  CollisionAvoider.swift
-//  sdk
 //
-//  Created by David G. Young on 5/8/20.
+//  Created by David G. Young on 5/9/20.
+//  Copyright © 2020 David G. Young, all rights reserved.
+//  Licensed under Apache 2
 //
 
 import Foundation

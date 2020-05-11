@@ -3,7 +3,8 @@
 //  Advertiser
 //
 //  Created by David G. Young on 5/2/20.
-//  Copyright © 2020 davidgyoungtech. All rights reserved.
+//  Copyright © 2020 David G. Young, all rights reserved.
+//  Licensed under Apache 2
 //
 
 import UIKit
