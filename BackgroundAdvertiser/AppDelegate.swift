@@ -13,8 +13,8 @@ import CoreLocation
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate, CBPeripheralManagerDelegate, CBCentralManagerDelegate, CBPeripheralDelegate, CLLocationManagerDelegate {
     
-    //let OperationMode = "Demo" // used to do two-way communications of background beaconing using the overflow area
-    let OperationMode = "SequentiallyAdvertiseAllUuids" // used to advertise all service uuids starting with below
+    let OperationMode = "Demo" // used to do two-way communications of background beaconing using the overflow area
+    //let OperationMode = "SequentiallyAdvertiseAllUuids" // used to advertise all service uuids starting with below
     var serviceUuidString = "00000000-0000-0000-0000-000000000000"
 
     var locationManager: CLLocationManager!
