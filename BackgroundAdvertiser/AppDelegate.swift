@@ -59,6 +59,9 @@ class AppDelegate: UIResponder, UIApplicationDelegate, CBPeripheralManagerDelega
         }
         // start updating location at beginning just to give us unlimited background running time
         self.locationManager.startUpdatingLocation()
+        // start ranging beacons to force BLE scans.  If this is not done, delivery of overflow area advertisements will not be made when the
+        // app is not in the foreground.  Enabling beacon ranging appears to unlock this background delivery, at least when the screen is on.
+        self.locationManager.startRangingBeacons(in: CLBeaconRegion(proximityUUID: UUID(uuidString: "2F234454-CF6D-4A0F-ADF2-F4911BA9FFA6")!, identifier: "dummy-beacon-region"))
         
         extendBackgroundRunningTime()
 
@@ -113,7 +116,10 @@ class AppDelegate: UIResponder, UIApplicationDelegate, CBPeripheralManagerDelega
     
     func centralManagerDidUpdateState(_ central: CBCentralManager) {
         if central.state == CBManagerState.poweredOn {
-            startScanning()
+            if OperationMode == "Demo"  {
+                startScanning()
+                
+            }
         }
     }
     func centralManager(_ central: CBCentralManager, didDiscover peripheral: CBPeripheral, advertisementData: [String : Any], rssi RSSI: NSNumber) {
