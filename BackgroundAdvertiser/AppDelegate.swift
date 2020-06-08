@@ -26,7 +26,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate, CBPeripheralManagerDelega
     var centralManager: CBCentralManager? = nil
     let centralQueue = DispatchQueue.global(qos: .userInitiated)
     let peripheralQueue = DispatchQueue.global(qos: .userInitiated)
-    let backgroundBeaconManager = BackgroundBeaconManager.shared
     var scanStartTime = 0.0
     
     
@@ -66,12 +65,19 @@ class AppDelegate: UIResponder, UIApplicationDelegate, CBPeripheralManagerDelega
         extendBackgroundRunningTime()
 
         if self.OperationMode == "Demo" {
-            backgroundBeaconManager.matchingByte = 0xaa
-            backgroundBeaconManager.startAdvertising(beaconBytes: [0x01, 0x02, 0x03, 0x04])
+            // You must supply 16 bytes, but you can leave any ones you don't use as 0x00
+            startOverflowAdvertising(overflowAreaBytes: [0x01, 0x02, 0x03, 0x04, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00])
         }
         return true
     }
-    
+
+    func startOverflowAdvertising(overflowAreaBytes: [UInt8]) {
+        let hexString = String(format: "%02X%02X%02X%02X%02X%02X%02X%02X%02X%02X%02X%02X%02X%02X%02X%02X", overflowAreaBytes[0],overflowAreaBytes[1],overflowAreaBytes[2],overflowAreaBytes[3],overflowAreaBytes[4],overflowAreaBytes[5],overflowAreaBytes[6],overflowAreaBytes[7],overflowAreaBytes[8],overflowAreaBytes[9],overflowAreaBytes[10],overflowAreaBytes[11],overflowAreaBytes[12],overflowAreaBytes[13],overflowAreaBytes[14],overflowAreaBytes[15])
+        NSLog("emitting overflow area advertisement \(hexString)")
+
+        let adData = [CBAdvertisementDataServiceUUIDsKey : OverflowAreaUtils.bytesToOverflowServiceUuids(bytes: overflowAreaBytes)]
+        peripheralManager?.startAdvertising(adData)
+    }
     
     func startScanning() {
         scanStartTime = Date().timeIntervalSince1970
@@ -123,8 +129,9 @@ class AppDelegate: UIResponder, UIApplicationDelegate, CBPeripheralManagerDelega
         }
     }
     func centralManager(_ central: CBCentralManager, didDiscover peripheral: CBPeripheral, advertisementData: [String : Any], rssi RSSI: NSNumber) {
-        if let beaconBytes = BackgroundBeaconManager.shared.extractBeaconBytes(peripheral: peripheral, advertisementData: advertisementData, countToExtract: 4) {
-            NSLog("I just read beacon bytes: \(beaconBytes)")
+        if let overflowAreaBytes = OverflowAreaUtils.extractOverflowAreaBytes(advertisementData: advertisementData) {
+            let hexString = String(format: "%02X%02X%02X%02X%02X%02X%02X%02X%02X%02X%02X%02X%02X%02X%02X%02X", overflowAreaBytes[0],overflowAreaBytes[1],overflowAreaBytes[2],overflowAreaBytes[3],overflowAreaBytes[4],overflowAreaBytes[5],overflowAreaBytes[6],overflowAreaBytes[7],overflowAreaBytes[8],overflowAreaBytes[9],overflowAreaBytes[10],overflowAreaBytes[11],overflowAreaBytes[12],overflowAreaBytes[13],overflowAreaBytes[14],overflowAreaBytes[15])
+            NSLog("I just read overflow area bytes: \(hexString)")
         }
     }
     func centralManager(_ central: CBCentralManager, didConnect peripheral: CBPeripheral) {

@@ -8,8 +8,6 @@
 
 /* Begin PBXBuildFile section */
 		EE21A4632464D85500613FD5 /* OverflowAreaUtils.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE21A4622464D85500613FD5 /* OverflowAreaUtils.swift */; };
-		EE2A5E5B24675DFD007A3DC5 /* ColllisionAvoider.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE2A5E5A24675DFD007A3DC5 /* ColllisionAvoider.swift */; };
-		EE2A5E5E24675E9D007A3DC5 /* BackgroundBeaconManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE2A5E5D24675E9D007A3DC5 /* BackgroundBeaconManager.swift */; };
 		EE9B4C662437D83F0000BD4E /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE9B4C652437D83F0000BD4E /* AppDelegate.swift */; };
 		EE9B4C6C2437D8400000BD4E /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = EE9B4C6B2437D8400000BD4E /* Assets.xcassets */; };
 		EE9B4C6F2437D8400000BD4E /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = EE9B4C6E2437D8400000BD4E /* Preview Assets.xcassets */; };
@@ -18,8 +16,6 @@
 
 /* Begin PBXFileReference section */
 		EE21A4622464D85500613FD5 /* OverflowAreaUtils.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OverflowAreaUtils.swift; sourceTree = "<group>"; };
-		EE2A5E5A24675DFD007A3DC5 /* ColllisionAvoider.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ColllisionAvoider.swift; sourceTree = "<group>"; };
-		EE2A5E5D24675E9D007A3DC5 /* BackgroundBeaconManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BackgroundBeaconManager.swift; sourceTree = "<group>"; };
 		EE9B4C622437D83F0000BD4E /* BackgroundAdvertiser.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = BackgroundAdvertiser.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		EE9B4C652437D83F0000BD4E /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		EE9B4C6B2437D8400000BD4E /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
@@ -43,8 +39,6 @@
 			isa = PBXGroup;
 			children = (
 				EE21A4622464D85500613FD5 /* OverflowAreaUtils.swift */,
-				EE2A5E5A24675DFD007A3DC5 /* ColllisionAvoider.swift */,
-				EE2A5E5D24675E9D007A3DC5 /* BackgroundBeaconManager.swift */,
 			);
 			path = OverflowArea;
 			sourceTree = "<group>";
@@ -158,9 +152,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				EE21A4632464D85500613FD5 /* OverflowAreaUtils.swift in Sources */,
-				EE2A5E5E24675E9D007A3DC5 /* BackgroundBeaconManager.swift in Sources */,
 				EE9B4C662437D83F0000BD4E /* AppDelegate.swift in Sources */,
-				EE2A5E5B24675DFD007A3DC5 /* ColllisionAvoider.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
