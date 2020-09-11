@@ -10,6 +10,10 @@ import Foundation
 import CoreBluetooth
 
 public class OverflowAreaUtils {
+    // This bit, if set, will cause an "Apple Watch: Use your iPhone to set up this Apple watch" dialog, as it is associated with
+    // the Appple watch's 128-bit service UUID 9aa4730f-b25c-4cc3-b821-c931559fc196.  Avoid using this bit position if you do not want to
+    // accidentally set off this dialog when the receiver is in very close proximity (a few centimeters) from the emitter
+    public static let AppleWatchNotificationBitPosition = 69
     public static let TableOfOverflowServiceUuidStringsByBitPosition = [
         "00000000-0000-0000-0000-00000000007C",
         "00000000-0000-0000-0000-000000000037",
@@ -220,7 +224,18 @@ public class OverflowAreaUtils {
         }
         return bytes
     }
-    
+
+    public static func bitsToOverflowServiceUuids(bits: [UInt8]) -> [CBUUID] {
+        // Each input array element is a bit value of 1 or 0
+        var cbUuids: [CBUUID] = []
+        for bitPosition in 0...127 {
+            if bits[bitPosition] == 1 {
+                cbUuids.append(TableOfOverflowServiceUuidsByBitPosition[bitPosition])
+            }
+        }
+        return cbUuids
+    }
+
     public static func bytesToOverflowServiceUuids(bytes: [UInt8]) -> [CBUUID] {
         var cbUuids: [CBUUID] = []
         for byteNumber in 0...15 {
